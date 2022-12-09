@@ -10,13 +10,15 @@ class Welcome extends StatelessWidget {
       body: Column(
         children: [
           const Spacer(flex: 4),
-          Text(
-            "Bienvenue !",
-            style: Theme.of(context).textTheme.headline3?.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+          Center (
+            child: Text(
+              "Bienvenue !",
+              style: Theme.of(context).textTheme.headline3?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
           const Spacer(flex: 1),
           ElevatedButton(
