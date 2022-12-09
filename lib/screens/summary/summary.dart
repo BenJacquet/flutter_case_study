@@ -34,56 +34,68 @@ class _SummaryState extends State<Summary>{
   Widget build(BuildContext context) {
     return _isLoading
       ? const Center(child: CircularProgressIndicator())
-      : Scaffold(
-      body: Column(
-        children: [
-          const Spacer(flex: 4),
-          Text(
-            "Récapitulons, $_prenom\n\n"
-            "Tu as $_age ans\n\n"
-            "Si tu pouvais tu te nourrirais seulement de $_aliment !\n\n"
-            "Tu es fan de $_heros !\n",
-            style: Theme.of(context).textTheme.headline5?.copyWith(
-            color: Colors.white,
-            fontWeight: FontWeight.bold
+      : Center(
+            child: Scaffold(
+               body: Column(
+                 children: [
+                   const Spacer(flex: 4),
+                   RichText(
+                     text: TextSpan(
+                       style: Theme.of(context).textTheme.headline5?.copyWith(
+                           color: Colors.white,
+                           fontWeight: FontWeight.bold
+                       ),
+                       children: <TextSpan>[
+                         const TextSpan(text: "Récapitulons "),
+                         TextSpan(text: "$_prenom\n\n", style: const TextStyle(color: Colors.blue)),
+                         const TextSpan(text: "Tu as "),
+                         TextSpan(text: "$_age", style: const TextStyle(color: Colors.blue)),
+                         const TextSpan(text: " ans\n\n"),
+                         const TextSpan(text: "Si tu pouvais tu te nourrirais seulement de "),
+                         TextSpan(text: "$_aliment", style: const TextStyle(color: Colors.blue)),
+                         const TextSpan(text: " !\n\n"),
+                         const TextSpan(text: "Tu es fan de "),
+                         TextSpan(text: "$_heros", style: const TextStyle(color: Colors.blue)),
+                         const TextSpan(text: " !\n"),
+                       ],
+                     ),
+                   ),
+                   const Spacer(flex: 1),
+                   Text(
+                     "On a tout bon ?",
+                     style: Theme.of(context).textTheme.headline4?.copyWith(
+                       color: Colors.white,
+                       fontWeight: FontWeight.bold,
+                     ),
+                   ),
+                   Row(
+                       children: [
+                         const Spacer(),
+                         ElevatedButton(
+                           child:  const Text("Non !",
+                             style: TextStyle(fontSize: 20),
+                           ),
+                           onPressed: () {
+                             Navigator.push(
+                                 context,
+                                 MaterialPageRoute(builder: (context) => Prenom())
+                             );
+                           },
+                         ),
+                         const Spacer(),
+                         ElevatedButton(
+                           child:  const Text("Exact !",
+                             style: TextStyle(fontSize: 20),
+                           ),
+                           onPressed: () {},
+                         ),
+                         const Spacer(),
+                       ],
+                     ),
+                   const Spacer(flex: 4),
+               ],
             ),
-            textAlign: TextAlign.center,
-          ),
-          const Spacer(flex: 1),
-          Text(
-            "On a tout bon ?",
-            style: Theme.of(context).textTheme.headline4?.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Row(
-              children: [
-                const Spacer(),
-                ElevatedButton(
-                  child:  const Text("Non !",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Prenom())
-                    );
-                  },
-                ),
-                const Spacer(),
-                ElevatedButton(
-                  child:  const Text("Exact !",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {},
-                ),
-                const Spacer(),
-              ],
-            ),
-          const Spacer(flex: 4),
-        ],
-      ),
+        )
     );
   }
 }
